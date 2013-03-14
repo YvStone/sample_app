@@ -3,25 +3,25 @@ require 'spec_helper'
 describe "Static Pages" do
   
   subject { page }
-  
-  it "should have the right links on the layout" do
-    visit root_path
-    click_link "About"
-    page.should have_selector 'title', text: full_title('About Us')
-    click_link "Help"
-    page.should have_selector 'title', text: full_title('Help')
-    click_link "Contact"
-    page.should have_selector 'title', text: full_title("Contact")
-    click_link "Home"
-    page.should have_selector 'title', text: full_title('')
-    click_link "Sign up now!"
-    click_link "sample app"
-    page.should have_selector 'title', text: full_title('')
-  end
-  
+    
   shared_examples_for "all static pages" do
     it { should have_selector('h1',     text: heading) }
     it { should have_selector('title',  text: full_title('')) }
+    
+    it "should have the right links on the layout" do
+      click_link "About"
+      page.should have_selector 'title', text: full_title('About Us')
+      click_link "Help"
+      page.should have_selector 'title', text: full_title('Help')
+      click_link "Contact"
+      page.should have_selector 'title', text: full_title("Contact")
+      click_link "Home"
+      page.should have_selector 'title', text: full_title('')
+      click_link "Sign up now!"
+      click_link "sample app"
+      page.should have_selector 'title', text: full_title('')
+    end
+  
   end
   
   describe "Home page" do
